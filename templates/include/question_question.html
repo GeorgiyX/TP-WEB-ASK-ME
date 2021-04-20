@@ -2,9 +2,9 @@
 <!-- Тоже самое превью вопроса но без answer и линка header'a-->
 <div class="row question">
     <div class="col-2" id="question-left">
-        <img src="img/avatar.png" alt="avatar">
+        <img src="{% static "img/avatar.png" %}" alt="avatar">
         <div id="rating">
-            <div class="badge bg-secondary">4</div>
+            <div class="badge bg-secondary">{{ question.rating }}</div>
             <div>
                 <a href="#">
                     <svg viewBox="-10 -10 20 10" width="20" height="10">
@@ -21,16 +21,8 @@
 
     </div>
     <div class="col-10" id="question-right">
-        <div id="question-header">How use mapnik lib?</div>
-        <div id="question-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga tempora optio illo quod
-            alias suscipit quam consequuntur minima expedita. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Fuga tempora optio illo quod
-            alias suscipit quam consequuntur minima expedita.Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Fuga tempora optio illo quod
-            alias suscipit quam consequuntur minima expedita.
-
-        </div>
+        <div id="question-header">How {{ question.title }}?</div>
+        <div id="question-text">{{ question.text }}</div>
         <div id="question-footer">
             <span class="badge bg-warning text-dark">с++</span>
             <span class="badge bg-warning text-dark">libs</span>

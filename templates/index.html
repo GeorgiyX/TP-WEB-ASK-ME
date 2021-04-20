@@ -1,12 +1,15 @@
 {% extends "include/base.html" %}
 {% load static %}
+{% block header %}
+    {% include "include/header_login.html" %}
+{% endblock %}
 {% block right_column %}
     <div id="left-block-header">
         <span>{{ header_text }}</span>
         <a href="{{ url_to }}">{{ url_name }}</a>
     </div>
     <!-- Блок превью вопроса -->
-    {% for i in question_cnt %}
+    {% for question in questions %}
         {% include "include/question_index.html" %}
     {% endfor %}
     <!-- Конец блок превью вопроса -->

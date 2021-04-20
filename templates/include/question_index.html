@@ -3,7 +3,7 @@
     <div class="col-2" id="question-left">
         <img src="{% static "img/avatar.png" %}" alt="avatar">
         <div id="rating">
-            <div class="badge bg-secondary">4</div>
+            <div class="badge bg-secondary">{{ question.rating }}</div>
             <div>
                 <a href="#">
                     <svg viewBox="-10 -10 20 10" width="20" height="10">
@@ -21,25 +21,17 @@
     </div>
     <div class="col-10" id="question-right">
         <div id="question-header">
-            <a href="#">How use mapnik lib?</a>
+            <a href="#">How {{ question.title }}?</a>
         </div>
-        <div id="question-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga tempora optio illo quod
-            alias suscipit quam consequuntur minima expedita. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Fuga tempora optio illo quod
-            alias suscipit quam consequuntur minima expedita.Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Fuga tempora optio illo quod
-            alias suscipit quam consequuntur minima expedita.
-
-        </div>
+        <div id="question-text"> {{ question.text }}</div>
         <div id="question-footer">
-            <a href="/question/1/">Answers(3)</a>
+            <a href="/question/1/">Answers({{ question.answer_cnt }})</a>
             <span>
-                                    <span class="badge bg-warning text-dark">с++</span>
-                                    <span class="badge bg-warning text-dark">libs</span>
-                                    <span class="badge bg-warning text-dark">linux</span>
-                                    <span class="badge bg-warning text-dark">mapnik</span>
-                                </span>
+                <span class="badge bg-warning text-dark">с++</span>
+                <span class="badge bg-warning text-dark">libs</span>
+                <span class="badge bg-warning text-dark">linux</span>
+                <span class="badge bg-warning text-dark">mapnik</span>
+            </span>
         </div>
     </div>
 </div>

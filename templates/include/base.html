@@ -11,11 +11,12 @@
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link href="{% static "css/styles.css" %}" rel="stylesheet">
 
-    <title>Hello, world!</title>
+    <title>Ask me!</title>
 </head>
 
 <body class="d-flex flex-column h-100">
-{% include "include/header.html" %}
+{% block header %}
+{% endblock %}
 <main class="flex-shrink-0 ">
     <div class="container">
         <div class="row">

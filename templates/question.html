@@ -1,18 +1,21 @@
 {% extends "include/base.html" %}
 {% load static %}
+{% block header %}
+    {% include "include/header_login.html" %}
+{% endblock %}
 {% block right_column %}
     <div id="left-block-header"></div>
-    {% include "include/question_index.html" %}
+    {% include "include/question_question.html"%}
     <hr class="answer-spacer">
     <!-- Блок ответа -->
-    {% for i in answer_cnt %}
+    {% for answer in answers %}
         {% include "include/answer.html" %}
     {% endfor %}
     <!-- Блок ответа -->
-    <hr class="answer-spacer">
     {% if pagination_info.is_enabled %}
         {% include "include/paginator.html" %}
     {% endif %}
+    <hr class="answer-spacer">
     <form class="needs-validation" novalidate>
         <div class="mb-3">
             <textarea class="form-control" id="answer-text-area" rows="5" placeholder="Write your answer here..."

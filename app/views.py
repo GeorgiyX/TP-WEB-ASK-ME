@@ -1,16 +1,39 @@
+import datetime
+import time
+import random
 from math import ceil
 from django.http import Http404
 from django.shortcuts import render
-
-map_id_to_name = {1: "C++", 2: "libs", 3: "linux", 4: "mapnik"}
-PAGINATION_ELEMENT_COUNT = 5
-ELEMENT_PER_PAGE = 15
-TOTAL_ELEMENT = 15
+from app.constants import LOREM_IPSUM, map_id_to_name, TOTAL_ELEMENT, ELEMENT_PER_PAGE, PAGINATION_ELEMENT_COUNT
 
 
 def get_elem_cnt_cur_pg(page_no, per_page=ELEMENT_PER_PAGE, total=TOTAL_ELEMENT):
     return range(TOTAL_ELEMENT % ELEMENT_PER_PAGE
                  if page_no * ELEMENT_PER_PAGE > TOTAL_ELEMENT else ELEMENT_PER_PAGE)
+
+
+def get_questions(page_no, per_page=ELEMENT_PER_PAGE, total=TOTAL_ELEMENT):
+    questions = list()
+    random.seed(datetime.datetime.now().second)
+    for i in get_elem_cnt_cur_pg(page_no, per_page, total):
+        quest = {"text": LOREM_IPSUM[0:random.randint(50, len(LOREM_IPSUM))],
+                 "title": LOREM_IPSUM[0:random.randint(15, int(len(LOREM_IPSUM) * 0.02))],
+                 "rating": random.randint(0, 100),
+                 "answer_cnt": random.randint(0, 100)}
+        questions.append(quest)
+    return questions
+
+
+def get_answers(page_no, per_page=ELEMENT_PER_PAGE, total=TOTAL_ELEMENT):
+    answers = list()
+    random.seed(datetime.datetime.now().second)
+    for i in get_elem_cnt_cur_pg(page_no, per_page, total):
+        answer = {"text": LOREM_IPSUM[0:random.randint(50, len(LOREM_IPSUM))],
+                  "rating": random.randint(0, 100),
+                  "is_checked": ""}
+        answers.append(answer)
+    answers[random.randint(0, 3)]["is_checked"] = "checked"  # out of range
+    return answers
 
 
 def get_pagination_info(page_no, per_page=ELEMENT_PER_PAGE, total=TOTAL_ELEMENT):
@@ -43,7 +66,7 @@ def index(request, page_no=1):
     context = {"url_to": "/hot", "url_name": "Hot Question",
                "header_text": "New Questions",
                "pagination_info": get_pagination_info(page_no),
-               "question_cnt": get_elem_cnt_cur_pg(page_no)}
+               "questions": get_questions(page_no)}
     context["pagination_info"]["base_url"] = "/"
     return render(request, "index.html", context)
 
@@ -52,7 +75,7 @@ def hot(request, page_no=1):
     context = {"url_to": "/", "url_name": "New Questions",
                "header_text": "Hot Questions",
                "pagination_info": get_pagination_info(page_no),
-               "question_cnt": get_elem_cnt_cur_pg(page_no)}
+               "questions": get_questions(page_no)}
     context["pagination_info"]["base_url"] = "hot/"
     print(context["pagination_info"])
     return render(request, "index.html", context)
@@ -63,14 +86,15 @@ def tag(request, tag_id, page_no=1):
     context = {"url_to": "/hot", "url_name": "Hot Questions",
                "header_text": "Tag Questions - {0}".format(tag_name),
                "pagination_info": get_pagination_info(page_no),
-               "question_cnt": get_elem_cnt_cur_pg(page_no)}
+               "questions": get_questions(page_no)}
     context["pagination_info"]["base_url"] = "tag/{0}/".format(tag_id)
     return render(request, "index.html", context)
 
 
 def question(request, question_id, page_no=1):
     context = {"pagination_info": get_pagination_info(page_no, total=25),
-               "answer_cnt": get_elem_cnt_cur_pg(page_no, total=25)}
+               "question": get_questions(1, 1)[0],
+               "answers": get_answers(page_no)}
     context["pagination_info"]["base_url"] = "question/{0}/".format(question_id)
     return render(request, "question.html", context)
 
