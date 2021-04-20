@@ -1,0 +1,32 @@
+{% load static %}
+<div class="row answer">
+    <div class="col-2 answer-left">
+        <img src="{% static "img/avatar.png" %}" alt="avatar">
+        <div class="answer-rating">
+            <div class="badge bg-secondary">20</div>
+            <div>
+                <a href="#">
+                    <svg viewBox="-10 -10 20 10" width="20" height="10">
+                        <path d="M-10,0 L0,-10 10,0"/>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg viewBox="-10 0 20 10" width="20" height="10">
+                        <path d="M-10,0 L0,10 10,0"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-10 answer-right">
+        <div id="answer-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga tempora optio illo quod
+            alias suscipit quam consequuntur minima expedita.
+        </div>
+        <div class="answer-footer">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            <span>Correct!</span>
+        </div>
+    </div>
+</div>

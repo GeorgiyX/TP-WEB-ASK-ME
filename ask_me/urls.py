@@ -18,7 +18,26 @@ from django.urls import path
 
 from app import views
 
+# cписок новых вопросов (главная страница) (URL = /)
+# cписок “лучших” вопросов (URL = /hot/)
+# cписок вопросов по тэгу (URL = /tag/blablabla/)
+# cтраница одного вопроса со списком ответов (URL = /question/35/)
+# форма логина (URL = /login/)
+# форма регистрации (URL = /signup/)
+# форма создания вопроса (URL = /ask/)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index)
+    path('', views.index),
+    path('<int:page_no>', views.index),
+    path('hot/', views.hot),
+    path('hot/<int:page_no>/', views.hot, name="hot"),
+    path('tag/<int:tag_id>/', views.tag),
+    path('tag/<int:tag_id>/<int:page_no>/', views.tag, name="tag"),
+    path('question/<int:question_id>/', views.question),
+    path('question/<int:question_id>/<int:page_no>/', views.question, name="question"),
+    path('login/', views.login, name="login"),
+    path('signup/', views.signup, name="signup"),
+    path('ask/', views.ask, name="ask"),
+    path('setting/', views.setting, name="setting")
 ]
