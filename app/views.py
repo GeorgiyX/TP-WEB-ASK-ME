@@ -103,7 +103,7 @@ def question(request, question_id, page_no=1):
     context = {"pagination_info": get_pagination_info(page_no, total=25),
                "question": get_questions(1, 1)[0],
                "answers": get_answers(page_no)}
-    context["pagination_info"]["url"] = "question"
+    context["pagination_info"]["url"] = constants.QUESTION_URL
     context["pagination_info"]["id"] = 1  # Первый параметр URL
     return render(request, "question.html", context)
 

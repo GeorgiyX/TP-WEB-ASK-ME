@@ -11,3 +11,4 @@ TOTAL_ELEMENT = 301
 INDEX_URL = "index"
 HOT_URL = "hot"
 TAG_URL = "tag"
+QUESTION_URL = "question"
