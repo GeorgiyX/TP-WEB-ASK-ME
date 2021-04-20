@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-2">
-                <a href="/"><img src="{% static "img/logo.png" %}" id="logo-img"></a>
+                <a href="{% url "index" %}"><img src="{% static "img/logo.png" %}" id="logo-img"></a>
             </div>
             <div class="col-6">
                 <form>
@@ -11,7 +11,7 @@
                 </form>
             </div>
             <div class="col-1">
-                <a href="/ask/"><button type="button" class="btn btn-warning">Ask!</button></a>
+                <a href="{% url "ask" %}"><button type="button" class="btn btn-warning">Ask!</button></a>
             </div>
             <div class="col-1">
                 <img src="{% static "img/avatar.png" %}" id="header-img">
@@ -22,10 +22,10 @@
                 </div>
                 <div class="row ">
                     <div class="col">
-                        <a href="/setting" class="nav-link px-2 text-white custom-link" id="profile-link">Profile</a>
+                        <a href="{% url "setting" %}" class="nav-link px-2 text-white custom-link" id="profile-link">Profile</a>
                     </div>
                     <div class="col">
-                        <a href="/login" class="nav-link px-2 text-white custom-link" id="logout-link">LogOut</a>
+                        <a href="{% url "login" %}" class="nav-link px-2 text-white custom-link" id="logout-link">LogOut</a>
                     </div>
                 </div>
             </div>

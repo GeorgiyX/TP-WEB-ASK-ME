@@ -5,4 +5,9 @@ map_id_to_name = {1: "C++", 2: "libs", 3: "linux", 4: "mapnik"}
 
 PAGINATION_ELEMENT_COUNT = 5
 ELEMENT_PER_PAGE = 15
-TOTAL_ELEMENT = 15
+TOTAL_ELEMENT = 301
+
+# URL Names
+INDEX_URL = "index"
+HOT_URL = "hot"
+TAG_URL = "tag"

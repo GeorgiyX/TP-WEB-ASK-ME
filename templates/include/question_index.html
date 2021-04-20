@@ -21,11 +21,11 @@
     </div>
     <div class="col-10" id="question-right">
         <div id="question-header">
-            <a href="#">How {{ question.title }}?</a>
+            <a href="{% url "question" 1 1 %}">How {{ question.title }}?</a>
         </div>
         <div id="question-text"> {{ question.text }}</div>
         <div id="question-footer">
-            <a href="/question/1/">Answers({{ question.answer_cnt }})</a>
+            <a href="{% url "question" 1 1 %}">Answers({{ question.answer_cnt }})</a>
             <span>
                 <span class="badge bg-warning text-dark">с++</span>
                 <span class="badge bg-warning text-dark">libs</span>

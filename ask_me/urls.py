@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from app import views
+import app.constants as constants
 
 # cписок новых вопросов (главная страница) (URL = /)
 # cписок “лучших” вопросов (URL = /hot/)
@@ -28,13 +29,13 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('<int:page_no>', views.index),
-    path('hot/', views.hot),
+    path('', views.index, name=constants.INDEX_URL),
+    path('<int:page_no>', views.index, name=constants.INDEX_URL),
+    path('hot/', views.hot, name="hot"),
     path('hot/<int:page_no>/', views.hot, name="hot"),
-    path('tag/<int:tag_id>/', views.tag),
+    path('tag/<int:tag_id>/', views.tag, name="tag"),
     path('tag/<int:tag_id>/<int:page_no>/', views.tag, name="tag"),
-    path('question/<int:question_id>/', views.question),
+    path('question/<int:question_id>/', views.question, name="question"),
     path('question/<int:question_id>/<int:page_no>/', views.question, name="question"),
     path('login/', views.login, name="login"),
     path('signup/', views.signup, name="signup"),
