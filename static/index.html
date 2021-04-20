@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
     <!-- Required meta tags -->
@@ -13,43 +13,136 @@
     <title>Hello, world!</title>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <header class="p-3 bg-dark text-white">
         <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                </ul>
-
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search...">
-                </form>
-
-                <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <a href="#"><img src="img/logo.png" id="logo-img"></a>
+                </div>
+                <div class="col-6">
+                    <form>
+                        <input type="search" class="form-control form-control-dark" placeholder="Search...">
+                    </form>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-warning">Ask!</button>
+                </div>
+                <div class="col-1">
+                    <img src="img/avatar.png" id="header-img">
+                </div>
+                <div class="col-2">
+                    <div class="row" id="profile-name">
+                        <span id="profile-name">Hello, Robin­son</span>
+                    </div>
+                    <div class="row ">
+                        <div class="col">
+                            <a href="#" class="nav-link px-2 text-white" id="profile-link">Profile</a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="nav-link px-2 text-white" id="logout-link">LogOut</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
-    <main>
+    <main class="flex-shrink-0 ">
         <div class="container">
             <div class="row">
-                <div class="col-8 left-col">
+                <div class="col-8 left-col max-height">
                     <!-- Блок превью вопроса -->
                     <div class="row question">
                         <div class="col-2" id="question-left">
-                            <img src="img/avatar.jpg" alt="avatar">
+                            <img src="img/avatar.png" alt="avatar">
+                            <div id="rating">
+                                <div class="badge bg-secondary">4</div>
+                                <div>
+                                    <a href="#">
+                                        <svg viewBox="-10 -10 20 10" width="20" height="10">
+                                            <path d="M-10,0 L0,-10 10,0" />
+                                        </svg>
+                                    </a>
+                                    <a href="#">
+                                        <svg viewBox="-10 0 20 10" width="20" height="10">
+                                            <path d="M-10,0 L0,10 10,0" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-10" id="question-right">
+                            <div id="question-header">
+                                <a href="#">How use mapnik lib?</a>
+                            </div>
+                            <div id="question-text">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga tempora optio illo quod
+                                alias suscipit quam consequuntur minima expedita. Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga tempora optio illo quod
+                                alias suscipit quam consequuntur minima expedita.Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga tempora optio illo quod
+                                alias suscipit quam consequuntur minima expedita.
+
+                            </div>
+                            <div id="question-footer">
+                                <a href="#">Answers(3)</a>
+                                <span>
+                                    <span class="badge bg-warning text-dark">с++</span>
+                                    <span class="badge bg-warning text-dark">libs</span>
+                                    <span class="badge bg-warning text-dark">linux</span>
+                                    <span class="badge bg-warning text-dark">mapnik</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row question">
+                        <div class="col-2" id="question-left">
+                            <img src="img/avatar.png" alt="avatar">
+                            <div id="rating">
+                                <div class="badge bg-secondary">4</div>
+                                <div>
+                                    <a href="#">
+                                        <svg viewBox="-10 -10 20 10" width="20" height="10">
+                                            <path d="M-10,0 L0,-10 10,0" />
+                                        </svg>
+                                    </a>
+                                    <a href="#">
+                                        <svg viewBox="-10 0 20 10" width="20" height="10">
+                                            <path d="M-10,0 L0,10 10,0" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-10" id="question-right">
+                            <div id="question-header">
+                                <a href="#">How use mapnik lib?</a>
+                            </div>
+                            <div id="question-text">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga tempora optio illo quod
+                                alias suscipit quam consequuntur minima expedita. Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga tempora optio illo quod
+                                alias suscipit quam consequuntur minima expedita.Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Fuga tempora optio illo quod
+                                alias suscipit quam consequuntur minima expedita.
+
+                            </div>
+                            <div id="question-footer">
+                                <a href="#">Answers(3)</a>
+                                <span>
+                                    <span class="badge bg-warning text-dark">с++</span>
+                                    <span class="badge bg-warning text-dark">libs</span>
+                                    <span class="badge bg-warning text-dark">linux</span>
+                                    <span class="badge bg-warning text-dark">mapnik</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row question">
+                        <div class="col-2" id="question-left">
+                            <img src="img/avatar.png" alt="avatar">
                             <div id="rating">
                                 <div class="badge bg-secondary">4</div>
                                 <div>
@@ -92,6 +185,16 @@
                         </div>
                     </div>
                     <!-- Конец блок превью вопроса -->
+                    <!-- Пагинация, включает только когда много элементов -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
                 </div>
                 <div class="col-4 right-col">
                     <div class="right-col-header">Popular Tags</div>
@@ -124,9 +227,11 @@
             </div>
         </div>
     </main>
-
-
-
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. (C) 2021</span>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>

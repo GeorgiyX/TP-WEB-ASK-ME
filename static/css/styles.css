@@ -1,15 +1,15 @@
 .left-col {
-    background-color: rgba(221, 16, 240, 0.062);
+    /* background-color: rgba(221, 16, 240, 0.062); */
 }
 
 .right-col {
-    background-color: rgba(100, 255, 80, 0.103);
+    /* background-color: rgba(100, 255, 80, 0.103); */
 }
 
 
 /* question section */
 .question {
-    background-color: rgba(100, 255, 80, 0.103);
+    background-color: rgba(14, 148, 148, 0.103);
     margin: 10px;
     padding: 7px;
     border: 4px dashed rgb(255, 183, 0);
@@ -50,6 +50,7 @@
 }
 
 #rating .badge{
+    min-width: 60px;
     margin-top: 10px;
     margin-left: 4px;
     margin-right: 6px;
@@ -73,4 +74,43 @@
 }
 .right-col-header {
     font-size: 30px;
+}
+
+/* Header */
+#profile-name {
+    font-size: 20px;
+    text-align: center;
+
+}
+#profile-link {
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-align: right;
+}
+
+#profile-link:hover {
+    text-decoration-style: dotted;
+}
+
+#logout-link {
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-align: left;
+}
+
+#logout-link:hover {
+    text-decoration-style: dotted;
+}
+
+#logo-img {
+    margin-left: auto;
+    display: block;
+}
+
+#header-img {
+    height: 80px;
+    margin-left: auto;
+    display: block;
+    border: 4px dashed rgb(255, 183, 0);
+    border-radius: 4px;
 }
