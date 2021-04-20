@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <a href="#"><img src="img/logo.png" id="logo-img"></a>
+                </div>
+                <div class="col-6">
+                    <form>
+                        <input type="search" class="form-control form-control-dark" placeholder="Search...">
+                    </form>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-warning">Ask!</button>
+                </div>
+                <div class="col-1">
+                    <img src="img/avatar.png" id="header-img">
+                </div>
+                <div class="col-2">
+                    <div class="row" id="profile-name">
+                        <span id="profile-name">Hello, Robin­son</span>
+                    </div>
+                    <div class="row ">
+                        <div class="col">
+                            <a href="#" class="nav-link px-2 text-white" id="profile-link">Profile</a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="nav-link px-2 text-white" id="logout-link">LogOut</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="flex-shrink-0 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 left-col max-height">
+                    <div id="left-block-header">New Question</div>
+                    <form class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="qustion-title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="qustion-title" maxlength="90" required>
+                            <div class="invalid-feedback">Please specify the title of the question</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="qustion-text-area" class="form-label">Text</label>
+                            <textarea class="form-control" id="qustion-text-area" rows="5" maxlength="500" required></textarea>
+                            <div class="invalid-feedback">Please describe the question.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="qustion-tags" class="form-label">Tags</label>
+                            <input type="text" class="form-control" id="qustion-tags" maxlength="100">
+                            <div class="form-text">Select the appropriate tags for your question</div>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Ask now!</button>
+                    </form>
+                </div>
+                <!-- End left col -->
+                <!-- Right col -->
+                <div class="col-4 right-col">
+                    <div class="right-col-header">Popular Tags</div>
+                    <div id="pop-tags-list">
+                        <span class="badge bg-warning text-dark">с++</span>
+                        <span class="badge bg-warning text-dark">libs</span>
+                        <span class="badge bg-warning text-dark">linux</span>
+                        <span class="badge bg-warning text-dark">mapnik</span>
+                        <span class="badge bg-warning text-dark">css</span>
+                        <span class="badge bg-warning text-dark">jango</span>
+                        <span class="badge bg-warning text-dark">python</span>
+                        <span class="badge bg-warning text-dark">html</span>
+                        <span class="badge bg-warning text-dark">web</span>
+                        <span class="badge bg-warning text-dark">tp</span>
+                        <span class="badge bg-warning text-dark">hello word</span>
+                    </div>
+                    <div class="right-col-header">Best Members</div>
+                    <div class="best-members-list">
+                        <ol>
+                            <li><a href="#">Smith</a></li>
+                            <li><a href="#">John­son</a></li>
+                            <li><a href="#">Williams</a></li>
+                            <li><a href="#">Brown</a></li>
+                            <li><a href="#">Jones</a></li>
+                            <li><a href="#">Robin­son</a></li>
+                            <li><a href="#">Wright</a></li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End right col -->
+            </div>
+        </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. (C) 2021</span>
+        </div>
+    </footer>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

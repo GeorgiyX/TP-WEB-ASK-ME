@@ -1,13 +1,25 @@
-.left-col {
-    /* background-color: rgba(221, 16, 240, 0.062); */
+/* Common */
+.custom-link {
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
 }
 
-.right-col {
-    /* background-color: rgba(100, 255, 80, 0.103); */
+.img-border {
+    border: 4px dashed rgb(255, 183, 0);
+    border-radius: 4px;
 }
 
+.custom-link:hover {
+    text-decoration-style: dotted;
+}
 
-/* question section */
+/* Left column */
+#left-block-header {
+    text-align: center;
+    font-size: 50px;
+}
+
+/* Question section */
 .question {
     background-color: rgba(14, 148, 148, 0.103);
     margin: 10px;
@@ -82,6 +94,7 @@
     text-align: center;
 
 }
+
 #profile-link {
     text-decoration-line: underline;
     text-decoration-style: dashed;
@@ -113,4 +126,81 @@
     display: block;
     border: 4px dashed rgb(255, 183, 0);
     border-radius: 4px;
+}
+
+/*See-question*/
+.answer-spacer {
+    border-top: 4px solid rgb(255, 183, 0);
+}
+
+/* Answer section */
+.answer {
+    background-color: rgba(14, 148, 148, 0.103);
+    margin: 10px;
+    padding: 7px;
+    border: 4px dashed rgb(255, 183, 0);
+    border-radius: 10px;
+}
+
+.answer-right {
+    position: relative;
+}
+
+.answer-text {
+    margin-bottom: 30px;
+}
+
+.answer-footer {
+    position: absolute;
+    bottom: 0px;
+}
+
+.answer-left img {
+    margin-top: 10px;
+    height: 100px;
+    width: 100px;
+    border: 4px dashed rgb(255, 183, 0);
+    border-radius: 4px;
+}
+
+.answer-rating .badge{
+    min-width: 60px;
+    margin-top: 10px;
+    margin-left: 4px;
+    margin-right: 6px;
+}
+
+.answer-rating div {
+    margin-top: 6px;
+    float: left;
+}
+
+.answer-rating svg {
+    display: block;
+    padding: 0px;
+    margin: 3px;
+}
+
+.answer-spacer + form {
+    margin-bottom: 100px;
+}
+
+/* Login */
+form > button {
+    float: left;
+}
+form > button + div {
+    float: left;
+}
+
+/* SignUp */
+#reg-form {
+    margin-bottom: 130px;
+}
+
+/* Setting */
+#setting-avatar {
+    margin-right: auto;
+    display: block;
+    margin-bottom: 5px;
 }
