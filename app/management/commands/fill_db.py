@@ -7,26 +7,6 @@ import names
 import time
 
 
-# def get_questions(page_no, per_page=ELEMENT_PER_PAGE, total=TOTAL_ELEMENT):
-#     questions = list()
-#     random.seed(datetime.datetime.now().second)
-#     for i in get_elem_cnt_cur_pg(page_no, per_page, total):
-#         questions.append(quest)
-#     return questions
-#
-#
-# def get_answers(page_no, per_page=ELEMENT_PER_PAGE, total=TOTAL_ELEMENT):
-#     answers = list()
-#     random.seed(datetime.datetime.now().second)
-#     for i in get_elem_cnt_cur_pg(page_no, per_page, total):
-#         answer = {"text": LOREM_IPSUM[0:random.randint(50, len(LOREM_IPSUM))],
-#                   "rating": random.randint(0, 100),
-#                   "is_checked": ""}
-#         answers.append(answer)
-#     answers[random.randint(0, 3)]["is_checked"] = "checked"  # out of range
-#     return answers
-
-
 def add_users():
     profiles = []
     random_indexes = list(range(0, USER_COUNT))
@@ -98,14 +78,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start_time = time.time()
-        # try:
         add_users()
         add_tags()
         add_questions()
         add_answers()
-
-    # except:
-    #     self.stdout.write(self.style.ERROR("Can't fill database"))
-    #     return
         end_time = time.time()
-        self.stdout.write(self.style.SUCCESS("Database filled in {.f3} sec".format(end_time - start_time)))
+        self.stdout.write(self.style.SUCCESS("Database filled in {} sec".format(end_time - start_time)))
