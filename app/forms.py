@@ -41,6 +41,8 @@ class SignUpForm(forms.Form):
         username = self.cleaned_data.get("username")
         if username and User.objects.filter(username=username).count() != 0:
             self.add_error("username", "A profile with this name already exists!")
+        return self.cleaned_data
+
 
 
 class AddAnswerForm(forms.Form):
@@ -60,9 +62,34 @@ class AddAnswerForm(forms.Form):
 
 
 class AddQuestionForm(forms.Form):
-    title = forms.CharField(lable="Title")
-    text = forms.CharField(widget=forms.Textarea(attrs={"row": "5"}),
-                           error_messages={"required": "Please specify your question."}, label="Text")
+    title = forms.CharField(label="Title")
+    text = forms.CharField(label="Text", widget=forms.Textarea(attrs={"row": "5"}),
+                           error_messages={"required": "Please specify your question."})
     tags = forms.CharField(label="Tags", widget=forms.TextInput(
-        attrs={"placeholder": "Select the appropriate tags for your question"}))
-    pass
+                           attrs={"placeholder": "Select the appropriate tags for your question"}))
+
+    def clean(self):
+        super().clean()
+        tags = self.cleaned_data.get("tags")
+        if not tags or len(tags.split(" ")) > 3:
+            self.add_error("tags", "Please check tags count.")
+            return self.cleaned_data
+        self.cleaned_data["tags_objects"] = list(Tag.objects.filter(name__in=self.cleaned_data["tags"].split(" ")))
+        if len(self.cleaned_data["tags_objects"]) <= 1:
+            self.add_error("tags", "Please check tags names.")
+            return self.cleaned_data
+        return self.cleaned_data
+
+    def save(self, user):
+        if not self.is_valid():
+            raise Exception("AddQuestionForm not valid")
+        question = Question()
+        question.author = user
+        question.title = self.cleaned_data["title"]
+        question.text = self.cleaned_data["text"]
+        question.save()
+        question.tags.add(*self.cleaned_data["tags_objects"])
+        question.save()
+        return question
+
+

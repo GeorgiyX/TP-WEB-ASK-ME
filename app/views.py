@@ -124,18 +124,16 @@ def signup(request):
 
 @login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
 def ask(request):
-    return render(request, "ask.html")
+    if request.method == "POST":
+        form = AddQuestionForm(request.POST)
+        if form.is_valid():
+            question_object = form.save(request.user)
+            return HttpResponseRedirect(reverse(constants.QUESTION_URL, args=[question_object.id, 1]))
+    else:
+        form = AddQuestionForm()
+    return render(request, "ask.html", {"form": form})
 
 
 @login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
 def setting(request):
     return render(request, "setting.html")
-
-@login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
-def add_answer(request, question_id):
-    if request.method != "POST":
-        return HttpResponseRedirect(reverse(constants.INDEX_URL))
-    form = AddAnswerForm(request)
-    if form.is_valid():
-        form.save
-    re

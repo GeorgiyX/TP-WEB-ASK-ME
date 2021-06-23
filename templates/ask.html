@@ -1,23 +1,11 @@
 {% extends "include/base.html" %}
 {% load static %}
+{% load django_bootstrap5 %}
 {% block left_column %}
     <div id="left-block-header">New Question</div>
-    <form class="needs-validation" novalidate>
-        <div class="mb-3">
-            <label for="qustion-title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="qustion-title" maxlength="60" required>
-            <div class="invalid-feedback">Please specify the title of the question</div>
-        </div>
-        <div class="mb-3">
-            <label for="qustion-text-area" class="form-label">Text</label>
-            <textarea class="form-control" id="qustion-text-area" rows="5" maxlength="500" required></textarea>
-            <div class="invalid-feedback">Please describe the question.</div>
-        </div>
-        <div class="mb-3">
-            <label for="qustion-tags" class="form-label">Tags</label>
-            <input type="text" class="form-control" id="qustion-tags" maxlength="100">
-            <div class="form-text">Select the appropriate tags for your question</div>
-        </div>
+    <form novalidate action="{% url "ask" %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
         <button type="submit" class="btn btn-warning">Ask now!</button>
     </form>
 {% endblock %}
