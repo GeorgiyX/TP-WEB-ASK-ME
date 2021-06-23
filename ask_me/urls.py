@@ -22,14 +22,6 @@ from app import views
 import app.constants as constants
 import ask_me.settings
 
-# cписок новых вопросов (главная страница) (URL = /)
-# cписок “лучших” вопросов (URL = /hot/)
-# cписок вопросов по тэгу (URL = /tag/blablabla/)
-# cтраница одного вопроса со списком ответов (URL = /question/35/)
-# форма логина (URL = /login/)
-# форма регистрации (URL = /signup/)
-# форма создания вопроса (URL = /ask/)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name=constants.INDEX_URL),
@@ -46,5 +38,4 @@ urlpatterns = [
     path('setting/', views.setting, name="setting")
 ]
 if ask_me.settings.DEBUG:
-    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(ask_me.settings.MEDIA_URL, document_root=ask_me.settings.MEDIA_ROOT)
