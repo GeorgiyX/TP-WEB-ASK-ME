@@ -1,5 +1,6 @@
 {% extends "include/base.html" %}
 {% load static %}
+{% load django_bootstrap5 %}
 {% block left_column %}
     <div id="left-block-header"></div>
     {% include "include/question_question.html"%}
@@ -13,12 +14,11 @@
         {% include "include/paginator.html" %}
     {% endif %}
     <hr class="answer-spacer">
-    <form class="needs-validation" novalidate>
-        <div class="mb-3">
-            <textarea class="form-control" id="answer-text-area" rows="5" placeholder="Write your answer here..."
-                      required></textarea>
-            <div class="invalid-feedback">Please specify your answer.</div>
-        </div>
-        <button type="submit" class="btn btn-warning">Answer</button>
-    </form>
+    {% if user.is_authenticated and form %}
+        <form novalidate action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button button_type="submit" content="Answer" %}
+        </form>
+    {% endif %}
 {% endblock %}

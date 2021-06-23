@@ -25,7 +25,9 @@ class SignUpForm(forms.Form):
         profile = Profile()
         profile.user = user
         profile.nickname = self.cleaned_data["nickname"]
-        profile.avatar = self.cleaned_data["avatar"]
+        avatar = self.cleaned_data.get("avatar")
+        if avatar:
+            profile.avatar = avatar
         profile.save()
         return user
 
@@ -39,3 +41,19 @@ class SignUpForm(forms.Form):
         username = self.cleaned_data.get("username")
         if username and User.objects.filter(username=username).count() != 0:
             self.add_error("username", "A profile with this name already exists!")
+
+
+class AddAnswerForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea(attrs={"row": "5", "placeholder": "Write your answer here..."}),
+                           error_messages={"required": "Please specify your answer."}, label="")
+
+    def save(self, user, question_id):
+        if not self.is_valid():
+            raise Exception("AddAnswerForm not valid")
+        if Question.objects.filter(id=question_id).count() != 1:
+            return
+        answer = Answer()
+        answer.author = user
+        answer.question_id = question_id
+        answer.text = self.cleaned_data["text"]
+        answer.save()

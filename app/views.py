@@ -23,10 +23,6 @@ def get_page(paginator, page_no):
     return paginator.page(page_no)
 
 
-def get_right_col_data():
-    return {"top_tags": Tag.objects.get_top(), "tag_url": constants.TAG_URL, "top_users": Profile.objects.get_top()}
-
-
 def get_redirect_url_from_request(request, redirect_get_key=constants.LOGIN_REDIRECT_KEY):
     redirect_url = request.GET.get(redirect_get_key, "/")
     return redirect_url if url_has_allowed_host_and_scheme(redirect_url, allowed_hosts=[]) \
@@ -42,7 +38,6 @@ def index(request, page_no=1):
     context["pagination_info"] = {"url": constants.INDEX_URL}
     context["page"] = get_page(paginator, page_no)
     context["pages_list"] = get_pages_list(context["page"])
-    context["right_col"] = get_right_col_data()
     return render(request, "index.html", context)
 
 
@@ -55,7 +50,6 @@ def hot(request, page_no=1):
     context["pagination_info"] = {"url": constants.HOT_URL}
     context["page"] = get_page(paginator, page_no)
     context["pages_list"] = get_pages_list(context["page"])
-    context["right_col"] = get_right_col_data()
     return render(request, "index.html", context)
 
 
@@ -71,7 +65,6 @@ def tag(request, tag_id, page_no=1):
     context["pagination_info"] = {"url": constants.TAG_URL, "id": tag_id}
     context["page"] = get_page(paginator, page_no)
     context["pages_list"] = get_pages_list(context["page"])
-    context["right_col"] = get_right_col_data()
     return render(request, "index.html", context)
 
 
@@ -83,7 +76,14 @@ def question(request, question_id, page_no=1):
     context["question"] = question_object
     context["page"] = get_page(paginator, page_no)
     context["pages_list"] = get_pages_list(context["page"])
-    context["right_col"] = get_right_col_data()
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            context["form"] = AddAnswerForm(request.POST)
+            if context["form"].is_valid():
+                context["form"].save(request.user, question_id)
+                return HttpResponseRedirect(reverse(constants.QUESTION_URL, args=[question_id, page_no]))
+        else:
+            context["form"] = AddAnswerForm()
     return render(request, "question.html", context)
 
 
@@ -101,7 +101,7 @@ def login(request):
                 form.add_error(None, "Wrong login or password!")
     else:
         form = LoginForm()
-    return render(request, "login.html", {"form": form, "right_col": get_right_col_data()})
+    return render(request, "login.html", {"form": form})
 
 
 def logout(request):
@@ -119,14 +119,23 @@ def signup(request):
             return HttpResponseRedirect(reverse(constants.INDEX_URL))
     else:
         form = SignUpForm()
-    return render(request, "signup.html", {"form": form, "right_col": get_right_col_data()})
+    return render(request, "signup.html", {"form": form})
 
 
 @login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
 def ask(request):
-    return render(request, "ask.html", {"right_col": get_right_col_data()})
+    return render(request, "ask.html")
 
 
 @login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
 def setting(request):
-    return render(request, "setting.html", {"right_col": get_right_col_data()})
+    return render(request, "setting.html")
+
+@login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
+def add_answer(request, question_id):
+    if request.method != "POST":
+        return HttpResponseRedirect(reverse(constants.INDEX_URL))
+    form = AddAnswerForm(request)
+    if form.is_valid():
+        form.save
+    re

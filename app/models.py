@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from ask_me.settings import AVATARS, MEDIA_ROOT
 from cachetools import cached, TTLCache
 import app.constants as constants
+import os
 
 
 # Create your models here.
@@ -24,7 +25,7 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
     nickname = models.CharField(max_length=40, null=True)
-    avatar = models.ImageField(upload_to=AVATARS, default="no-ava.png", max_length=300)
+    avatar = models.ImageField(upload_to=AVATARS, default=os.path.join(AVATARS,"no-ava.png"), max_length=300)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     objects = ProfileManager()
 
