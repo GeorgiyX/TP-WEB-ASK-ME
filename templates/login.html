@@ -5,7 +5,7 @@
     <div id="left-block-header">Login</div>
     <div class="row justify-content-center">
         <div class="col-6">
-            <form novalidate action="{% url "login" %}?{{ request_get_params }}" method="post">
+            <form novalidate action="{% url "login" %}?{{ request.GET.urlencode }}" method="post">
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 {% bootstrap_button button_type="submit" content="Submit" %}

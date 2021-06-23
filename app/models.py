@@ -23,13 +23,13 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-    login = models.CharField(max_length=40)
+    nickname = models.CharField(max_length=40, null=True)
     avatar = models.ImageField(upload_to=AVATARS, default="no-ava.png", max_length=300)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     objects = ProfileManager()
 
     def __str__(self):
-        return row_preview(self.id, "{} - {}".format(self.user.username, self.login))
+        return row_preview(self.id, "{} - {}".format(self.user.username, self.nickname))
 
 
 class TagManager(models.Manager):

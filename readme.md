@@ -10,3 +10,6 @@
 - [ ] ДЗ5
 - [ ] ДЗ6
 - [ ] ДЗ7
+
+## TODO  
+* Default template context: `right_col: get_right_col_data()`

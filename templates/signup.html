@@ -1,48 +1,52 @@
 {% extends "include/base.html" %}
 {% load static %}
+{% load django_bootstrap5 %}
 {% block left_column %}
     <div id="left-block-header">Registration</div>
     <div class="row justify-content-center">
         <div class="col-6">
-            <form id="reg-form" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="reg-login" class="form-label">Login</label>
-                    <input type="text" class="form-control" id="reg-login" maxlength="30" required>
-                    <div class="invalid-feedback">Please enter login</div>
-                    <div class="valid-feedback">It's ok!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="reg-email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="reg-email" placeholder="name@example.com"
-                           maxlength="50" required>
-                    <div class="invalid-feedback">Please enter a valid email address</div>
-                    <div class="valid-feedback">It's ok!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="reg-nick" class="form-label">NickName</label>
-                    <input type="text" class="form-control" id="reg-nick" maxlength="30" required>
-                    <div class="invalid-feedback">Please enter nickname</div>
-                    <div class="valid-feedback">It's ok!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="reg-pass-1" class="form-label" maxlength="60">Password</label>
-                    <input type="password" id="reg-pass-1" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a password</div>
-                    <div class="valid-feedback">It's ok!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="reg-pass-1" class="form-label" maxlength="60">Re-enter password</label>
-                    <input type="password" id="reg-pass-2" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a password</div>
-                    <div class="invalid-feedback">Passord must be same</div>
-                    <div class="valid-feedback">It's ok!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="reg-avatar" class="form-label">Upload your avatar</label>
-                    <input class="form-control" type="file" id="reg-avatar">
-                    <div class="valid-feedback">It's ok!</div>
-                </div>
-                <button type="submit" class="btn btn-primary">Register!</button>
+            <form id="reg-form"  novalidate enctype="multipart/form-data" method="post" action="{% url "signup" %}">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% bootstrap_button button_type="submit" content="Register!" %}
+{#                <div class="mb-3">#}
+{#                    <label for="reg-login" class="form-label">Login</label>#}
+{#                    <input type="text" class="form-control" id="reg-login" maxlength="30" required>#}
+{#                    <div class="invalid-feedback">Please enter login</div>#}
+{#                    <div class="valid-feedback">It's ok!</div>#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="reg-email" class="form-label">Email address</label>#}
+{#                    <input type="email" class="form-control" id="reg-email" placeholder="name@example.com"#}
+{#                           maxlength="50" required>#}
+{#                    <div class="invalid-feedback">Please enter a valid email address</div>#}
+{#                    <div class="valid-feedback">It's ok!</div>#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="reg-nick" class="form-label">NickName</label>#}
+{#                    <input type="text" class="form-control" id="reg-nick" maxlength="30" required>#}
+{#                    <div class="invalid-feedback">Please enter nickname</div>#}
+{#                    <div class="valid-feedback">It's ok!</div>#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="reg-pass-1" class="form-label" maxlength="60">Password</label>#}
+{#                    <input type="password" id="reg-pass-1" class="form-control" required>#}
+{#                    <div class="invalid-feedback">Please enter a password</div>#}
+{#                    <div class="valid-feedback">It's ok!</div>#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="reg-pass-1" class="form-label" maxlength="60">Re-enter password</label>#}
+{#                    <input type="password" id="reg-pass-2" class="form-control" required>#}
+{#                    <div class="invalid-feedback">Please enter a password</div>#}
+{#                    <div class="invalid-feedback">Passord must be same</div>#}
+{#                    <div class="valid-feedback">It's ok!</div>#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="reg-avatar" class="form-label">Upload your avatar</label>#}
+{#                    <input class="form-control" type="file" id="reg-avatar">#}
+{#                    <div class="valid-feedback">It's ok!</div>#}
+{#                </div>#}
+{#                <button type="submit" class="btn btn-primary">Register!</button>#}
             </form>
         </div>
     </div>
