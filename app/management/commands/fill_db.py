@@ -19,7 +19,7 @@ def add_users():
         user.save()
 
         profile = Profile()
-        profile.login = user.email.split("@")[0]
+        profile.nickname = user.email.split("@")[0]
         profile.user = user
         profiles.append(profile)
 
@@ -48,12 +48,13 @@ def add_tags():
 def add_questions():
     for i in range(0, QUESTION_COUNT):
         question = Question()
-        question.title = LOREM_IPSUM[0:random.randint(15, int(len(LOREM_IPSUM) * 0.02))]
-        question.text = LOREM_IPSUM[0:random.randint(50, len(LOREM_IPSUM))]
+        question.title = random.choices(["How", "What", "Why"])[0] + " " \
+                         + LOREM_IPSUM[0:random.randint(15, int(len(LOREM_IPSUM) * 0.02))].lower() + "?"
+        question.text = LOREM_IPSUM[0:random.randint(50, len(LOREM_IPSUM))] + "?"
         question.author = User.objects.get(id=random.randint(1, USER_COUNT))
         question.save()
 
-        question.tags.add(*get_range(Tag.objects.all(), TAGS_COUNT, 10))
+        question.tags.add(*get_range(Tag.objects.all(), TAGS_COUNT, 5))
         question.likes.add(*get_range(User.objects.all(), USER_COUNT, 50))
         question.dislikes.add(*get_range(User.objects.all(), USER_COUNT, 10))
         question.save()
@@ -62,10 +63,11 @@ def add_questions():
 def add_answers():
     for i in range(0, ANSWERS_COUNT):
         answer = Answer()
-        answer.text = LOREM_IPSUM[0:random.randint(50, len(LOREM_IPSUM))]
+        answer.text = random.choices(["Hi!", "This is a common problem", "I think this solution will help:",
+                                      "Hello.", ""])[0]+ " " + LOREM_IPSUM[0:random.randint(50, len(LOREM_IPSUM))]
         answer.author = User.objects.get(id=random.randint(1, USER_COUNT))
         answer.question = Question.objects.get(id=random.randint(1, QUESTION_COUNT))
-        answer.is_checked = random.choices([True, False], weights=[1, 20])
+        answer.is_checked = random.choices([True, False], weights=[1, 20])[0]
         answer.save()
 
         answer.likes.add(*get_range(User.objects.all(), USER_COUNT, 50))
