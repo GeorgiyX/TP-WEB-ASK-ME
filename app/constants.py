@@ -4,7 +4,7 @@ LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque 
 map_id_to_name = {1: "C++", 2: "libs", 3: "linux", 4: "mapnik"}
 
 PAGINATION_ELEMENT_COUNT = 5
-ELEMENT_PER_PAGE = 15
+ELEMENTS_PER_PAGE = 15
 TOTAL_ELEMENT = 301
 
 # URL Names
@@ -19,3 +19,5 @@ QUESTION_COUNT = 101
 ANSWERS_COUNT = 1001
 TAGS_COUNT = 100
 RATINGS_COUNT = 2001
+
+CACHE_TTL = 600  # 10 min

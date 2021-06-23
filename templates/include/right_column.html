@@ -1,27 +1,15 @@
 {% load static %}
 <div class="right-col-header">Popular Tags</div>
 <div id="pop-tags-list">
-    <a href="{% url "tag" 1 1%}"><span class="badge bg-warning text-dark">с++</span></a>
-    <a href="{% url "tag" 2 1%}"><span class="badge bg-warning text-dark">libs</span></a>
-    <a href="{% url "tag" 3 1%}"><span class="badge bg-warning text-dark">linux</span></a>
-    <a href="{% url "tag" 4 1%}"><span class="badge bg-warning text-dark">mapnik</span></a>
-    <a href="{% url "tag" 5 1%}"><span class="badge bg-warning text-dark">css</span></a>
-    <a href="{% url "tag" 6 1%}"><span class="badge bg-warning text-dark">django</span></a>
-    <a href="{% url "tag" 7 1%}"><span class="badge bg-warning text-dark">python</span></a>
-    <a href="{% url "tag" 8 1%}"><span class="badge bg-warning text-dark">html</span></a>
-    <a href="{% url "tag" 9 1%}"><span class="badge bg-warning text-dark">web</span></a>
-    <a href="{% url "tag" 10 1%}"><span class="badge bg-warning text-dark">tp</span></a>
-    <a href="{% url "tag" 11 1%}"><span class="badge bg-warning text-dark">hello word</span></a>
+    {% for tag in right_col.top_tags %}
+        <a href="{% url right_col.tag_url tag.id 1%}"><span class="badge bg-warning text-dark">{{ tag.name }}</span></a>
+    {% endfor %}
 </div>
 <div class="right-col-header">Best Members</div>
 <div class="best-members-list">
     <ol>
-        <li><a href="#">Smith</a></li>
-        <li><a href="#">John­son</a></li>
-        <li><a href="#">Williams</a></li>
-        <li><a href="#">Brown</a></li>
-        <li><a href="#">Jones</a></li>
-        <li><a href="#">Robin­son</a></li>
-        <li><a href="#">Wright</a></li>
+        {% for user in right_col.top_users %}
+            <li><a href="#">{{ user.user.username }}</a></li>
+        {% endfor %}
     </ol>
 </div>

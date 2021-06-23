@@ -1,7 +1,7 @@
 {% load static %}
 <div class="row answer">
     <div class="col-2 answer-left">
-        <img src="{% static "img/avatar.png" %}" alt="avatar">
+        <img src="{{ answer.author.profile.avatar.url }}" alt="avatar">
         <div class="answer-rating">
             <div class="badge bg-secondary">{{ answer.rating }}</div>
             <div>

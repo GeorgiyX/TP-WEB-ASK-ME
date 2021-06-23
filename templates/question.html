@@ -3,16 +3,16 @@
 {% block header %}
     {% include "include/header_login.html" %}
 {% endblock %}
-{% block right_column %}
+{% block left_column %}
     <div id="left-block-header"></div>
     {% include "include/question_question.html"%}
     <hr class="answer-spacer">
     <!-- Блок ответа -->
-    {% for answer in answers %}
+    {% for answer in page.object_list %}
         {% include "include/answer.html" %}
     {% endfor %}
     <!-- Блок ответа -->
-    {% if pagination_info.is_enabled %}
+    {% if page.has_other_pages %}
         {% include "include/paginator.html" %}
     {% endif %}
     <hr class="answer-spacer">

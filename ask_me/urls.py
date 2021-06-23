@@ -13,11 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
+import ask_me.settings
 from app import views
 import app.constants as constants
+import ask_me.settings
 
 # cписок новых вопросов (главная страница) (URL = /)
 # cписок “лучших” вопросов (URL = /hot/)
@@ -42,3 +45,6 @@ urlpatterns = [
     path('ask/', views.ask, name="ask"),
     path('setting/', views.setting, name="setting")
 ]
+if ask_me.settings.DEBUG:
+    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(ask_me.settings.MEDIA_URL, document_root=ask_me.settings.MEDIA_ROOT)

@@ -3,18 +3,18 @@
 {% block header %}
     {% include "include/header_login.html" %}
 {% endblock %}
-{% block right_column %}
+{% block left_column %}
     <div id="left-block-header">
         <span>{{ header_text }}</span>
-        <a href="{{ url_to }}">{{ url_name }}</a>
+        <a href="{% url url_to %}">{{ url_name }}</a>
     </div>
     <!-- Блок превью вопроса -->
-    {% for question in questions %}
+    {% for question in page.object_list %}
         {% include "include/question_index.html" %}
     {% endfor %}
     <!-- Конец блок превью вопроса -->
     <!-- Пагинация, включает только когда много элементов -->
-    {% if pagination_info.is_enabled %}
+    {% if page.has_other_pages %}
         {% include "include/paginator.html" %}
     {% endif %}
 {% endblock %}

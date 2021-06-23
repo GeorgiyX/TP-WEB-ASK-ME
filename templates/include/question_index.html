@@ -1,7 +1,7 @@
 {% load static %}
 <div class="row question">
     <div class="col-2" id="question-left">
-        <img src="{% static "img/avatar.png" %}" alt="avatar">
+        <img src="{{ question.author.profile.avatar.url }}" alt="avatar">
         <div id="rating">
             <div class="badge bg-secondary">{{ question.rating }}</div>
             <div>
@@ -21,16 +21,15 @@
     </div>
     <div class="col-10" id="question-right">
         <div id="question-header">
-            <a href="{% url "question" 1 1 %}">How {{ question.title }}?</a>
+            <a href="{% url "question" question.id 1 %}">{{ question.title }}</a>
         </div>
         <div id="question-text"> {{ question.text }}</div>
         <div id="question-footer">
-            <a href="{% url "question" 1 1 %}">Answers({{ question.answer_cnt }})</a>
+            <a href="{% url "question" question.id 1 %}">Answers({{ question.answers_count }})</a>
             <span>
-                <span class="badge bg-warning text-dark">с++</span>
-                <span class="badge bg-warning text-dark">libs</span>
-                <span class="badge bg-warning text-dark">linux</span>
-                <span class="badge bg-warning text-dark">mapnik</span>
+                {% for tag in question.tags.all %}
+                    <span class="badge bg-warning text-dark">{{ tag.name }}</span>
+                {% endfor %}
             </span>
         </div>
     </div>
