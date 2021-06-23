@@ -32,10 +32,11 @@ urlpatterns = [
     path('tag/<int:tag_id>/<int:page_no>/', views.tag, name=constants.TAG_URL),
     path('question/<int:question_id>/', views.question, name=constants.QUESTION_URL),
     path('question/<int:question_id>/<int:page_no>/', views.question, name=constants.QUESTION_URL),
-    path('login/', views.login, name="login"),
-    path('signup/', views.signup, name="signup"),
-    path('ask/', views.ask, name="ask"),
-    path('setting/', views.setting, name="setting")
+    path('login/', views.login, name=constants.LOGIN_URL),
+    path('signup/', views.signup, name=constants.SIGNUP_URL),
+    path('logout/', views.logout, name=constants.LOGOUT_URL),
+    path('ask/', views.ask, name=constants.ASK_URL),
+    path('setting/', views.setting, name=constants.SETTING_URL)
 ]
 if ask_me.settings.DEBUG:
     urlpatterns += static(ask_me.settings.MEDIA_URL, document_root=ask_me.settings.MEDIA_ROOT)

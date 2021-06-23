@@ -12,6 +12,11 @@ INDEX_URL = "index"
 HOT_URL = "hot"
 TAG_URL = "tag"
 QUESTION_URL = "question"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
+SIGNUP_URL = "signup"
+ASK_URL = "ask"
+SETTING_URL = "setting"
 
 # DB row counts:
 USER_COUNT = 101
@@ -21,3 +26,5 @@ TAGS_COUNT = 100
 RATINGS_COUNT = 2001
 
 CACHE_TTL = 600  # 10 min
+
+LOGIN_REDIRECT_KEY = "continue"

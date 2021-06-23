@@ -1,15 +1,15 @@
-import datetime
-import random
-from math import ceil
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.contrib.auth.decorators import login_required
+from django.contrib import auth
 from django.shortcuts import render
 import app.constants as constants
 from django.core.paginator import Paginator, Page
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-import app.constants
 from app.constants import *
 from app.models import *
+from app.forms import *
 
 
 def get_pages_list(page: Page, click_range=2):
@@ -82,16 +82,68 @@ def question(request, question_id, page_no=1):
 
 
 def login(request):
-    return render(request, "login.html", {})
+    request_get_params = ""
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse(constants.INDEX_URL))
+    if request.method == "POST":
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = auth.authenticate(request, **form.cleaned_data)
+            if user is not None:
+                auth.login(request, user)
+                redirect_url = request.GET.get(constants.LOGIN_REDIRECT_KEY, "/")
+                if url_has_allowed_host_and_scheme(redirect_url, allowed_hosts=[]):
+                    return HttpResponseRedirect(redirect_url)
+                else:
+                    return HttpResponseRedirect(reverse(constants.INDEX_URL))
+            else:
+                form.add_error(None, "Wrong login or password!")
+    else:
+        request_get_params = request.GET.urlencode()
+        form = LoginForm()
+    return render(request, "login.html",
+                  {"form": form, "right_col": get_right_col_data(),
+                   "request_get_params": request_get_params})
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse(constants.INDEX_URL))
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(constants.INDEX_URL)
+
+    #!User.objects.create_user()
+    if request.method == "POST":
+        form = SignUpForm(data=request.POST)
+        if form.is_valid():
+            user = auth.authenticate(request, **form.cleaned_data)
+            if user is not None:
+                auth.login(request, user)
+                redirect_url = request.GET.get(constants.LOGIN_REDIRECT_KEY, "/")
+                if url_has_allowed_host_and_scheme(redirect_url, allowed_hosts=[]):
+                    return HttpResponseRedirect(redirect_url)
+                else:
+                    return HttpResponseRedirect(reverse(constants.INDEX_URL))
+
+            else:
+                form.add_error(None, "Wrong login or password")
+    else:
+        request_get_params = request.GET.urlencode()
+        form = LoginForm()
+    return render(request, "login.html",
+                  {"form": form, "right_col": get_right_col_data(),
+                   "request_get_params": request_get_params})
     return render(request, "signup.html", {})
 
 
+@login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
 def ask(request):
     return render(request, "ask.html", {})
 
 
+@login_required(redirect_field_name=constants.LOGIN_REDIRECT_KEY)
 def setting(request):
     return render(request, "setting.html", {})

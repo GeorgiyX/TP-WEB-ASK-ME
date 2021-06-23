@@ -1,24 +1,14 @@
 {% extends "include/base.html" %}
 {% load static %}
-{% block header %}
-    {% include "include/header_logout.html" %}
-{% endblock %}
+{% load django_bootstrap5 %}
 {% block left_column %}
     <div id="left-block-header">Login</div>
     <div class="row justify-content-center">
         <div class="col-6">
-            <form class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="login-login" class="form-label">Login</label>
-                    <input type="text" class="form-control" id="login-login" required>
-                    <div class="invalid-feedback">Please enter login</div>
-                </div>
-                <div class="mb-3">
-                    <label for="login-passoword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="login-passoword" required>
-                    <div class="invalid-feedback">Please enter password</div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <form novalidate action="{% url "login" %}?{{ request_get_params }}" method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% bootstrap_button button_type="submit" content="Submit" %}
                 <a href="{% url "signup" %}" class="btn btn-link custom-link" id="login-create-acc">Create account.</a>
             </form>
         </div>
