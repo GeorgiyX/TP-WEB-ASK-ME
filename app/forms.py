@@ -57,3 +57,12 @@ class AddAnswerForm(forms.Form):
         answer.question_id = question_id
         answer.text = self.cleaned_data["text"]
         answer.save()
+
+
+class AddQuestionForm(forms.Form):
+    title = forms.CharField(lable="Title")
+    text = forms.CharField(widget=forms.Textarea(attrs={"row": "5"}),
+                           error_messages={"required": "Please specify your question."}, label="Text")
+    tags = forms.CharField(label="Tags", widget=forms.TextInput(
+        attrs={"placeholder": "Select the appropriate tags for your question"}))
+    pass
