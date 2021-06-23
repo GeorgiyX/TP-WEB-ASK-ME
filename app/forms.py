@@ -44,7 +44,6 @@ class SignUpForm(forms.Form):
         return self.cleaned_data
 
 
-
 class AddAnswerForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea(attrs={"row": "5", "placeholder": "Write your answer here..."}),
                            error_messages={"required": "Please specify your answer."}, label="")
@@ -66,7 +65,7 @@ class AddQuestionForm(forms.Form):
     text = forms.CharField(label="Text", widget=forms.Textarea(attrs={"row": "5"}),
                            error_messages={"required": "Please specify your question."})
     tags = forms.CharField(label="Tags", widget=forms.TextInput(
-                           attrs={"placeholder": "Select the appropriate tags for your question"}))
+        attrs={"placeholder": "Select the appropriate tags for your question"}))
 
     def clean(self):
         super().clean()
@@ -91,5 +90,3 @@ class AddQuestionForm(forms.Form):
         question.tags.add(*self.cleaned_data["tags_objects"])
         question.save()
         return question
-
-
